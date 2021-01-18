@@ -1,0 +1,64 @@
+<div class="container">
+
+  <!--
+  <div class="row">
+
+    <div class="col-12">
+
+      {{ selectedBook | json }}
+
+    </div>
+    
+  
+  </div>
+-->
+  
+  <div class="row">
+    <!-- listado de libros -->
+    <div class="col-6">
+
+      <ul class="list-unstyled" *ngIf="bookList">
+
+        <li class="media mb-2 p-1"
+        *ngFor="let book of bookList"
+        (click)="setSelectedBook(book)"
+        >
+
+          <img [src]="pathImg + book.coverImage" [style.width.px]="64" class="mr-3">
+
+          <div class="media-body">
+
+            <h6 class="mt-0 mb-1">
+
+              {{ book.title }}
+
+            </h6>
+
+            <p>
+
+              {{ book.authors }}
+
+            </p>
+
+          </div>
+
+        </li>
+
+      </ul>
+
+    </div>
+
+    <!-- detalles del libro -->
+    <div class="col-6" *ngIf="selectedBook">
+
+      <app-book-details [miLibrito]="selectedBook" (delete)="receiveBook($event)"></app-book-details>
+
+    </div>
+
+    <button (click)="borraFiltro()">
+      Borra Filtros
+    </button>
+
+  </div>
+
+</div>
